@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Bitcoin Script Visualizator</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="description" content="Clock skew calculation">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+        <link rel="stylesheet" href="styles/styles.css">
+		<link rel="icon" href="styles/ico.png" type="image/x-icon">
+        <script src="btc-script.js"></script>
+        <script src="alterGUI.js"></script>
+        <script src="main.js"></script>
+        <script src="crypto-js.min.js"></script>
+    </head>
+	<body>
+        <header>
+            <a href="bda.html">Bitcoin Script Visualizator</a>
+            <div id="upperForm" style="visibility:hidden">
+                <input type="text" id="txid2" maxlength="64" minlength="64" autocomplete="off" placeholder="Insert transaction ID" onkeyup="validateInput(0);">
+                <input type="submit" id="upperSubmit" onclick="requestTransaction(0);" value="Search">
+                <button id="stop" onclick="clearInterval(requestInterval);document.getElementById('stop').style.visibility = 'hidden';">Stop requesting more vins</button>
+            </div>
+        </header>
+        <main id="main">
+            <p></p>
+            <div id="lowerForm" style="visibility: visible" class="middle">
+                <input type="text" id="txid1" maxlength="64" minlength="64" autocomplete="off" placeholder="Insert transaction ID"  onkeyup="validateInput(1);"><br>
+                <input type="submit" id="lowerSubmit" value="Search" class="middle" onclick="requestTransaction(1);">
+            </div>
+            <div id="vis" class="container" style="visibility: hidden">
+                <div id="vins"></div>
+                <div id="ops">
+                    <h1>Operations</h1>
+                    <div id="next">
+                        <div id="playButtons">
+                            <div id="prevButton" onclick="repaintStep(curStep-1)" title="Previos step"></div>
+                            <div id="nextButton" onclick="repaintStep(curStep+1)" title="Next step"></div>
+                        </div>
+                    </div>
+                    <div id="steps"></div>
+                    <div id="opsArea" class="mainArea"></div>
+                </div>
+                <div id="stacks">
+                    <h1>Stack</h1>
+                    <div id="stackArea" class="mainArea stack"></div>
+                    <div id="altStack" class="stack"></div>
+                </div>
+            </div>
+        </main>
+    </body>
+</html>
